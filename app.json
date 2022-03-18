@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "caStore",
+    "slug": "caStore",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "caStore"
+}
