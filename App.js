@@ -6,11 +6,13 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import { useFonts } from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 export default function App() {
   const [loaded] = useFonts({
-    DMSansBold: require("./app/fonts/DMSans-Bold.ttf"),
-    DMSansMedium: require("./app/fonts/DMSans-Medium.ttf"),
+    DMSansBold: require("./app/assets/fonts/DMSans-Bold.ttf"),
+    DMSansMedium: require("./app/assets/fonts/DMSans-Medium.ttf"),
   });
 
   if (!loaded) {
@@ -19,10 +21,9 @@ export default function App() {
 
   return (
     <>
-      {/* <WelcomeScreen/> */}
-      <HeaderBar/>
-      <ProductLists />
-     
+<NavigationContainer>
+  <AuthNavigator/>
+</NavigationContainer>
     </>
   );
 }

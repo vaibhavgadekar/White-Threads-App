@@ -7,37 +7,29 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import LottieView from 'lottie-react-native';
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import Button from "../components/Button";
+import { ColorStyles } from "../assets/styles/ColorStyles";
+import { GenericStyles } from "../assets/styles/GenericStyles";
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={"#fff"} barStyle="dark-content" />
-      <Image
-        source={require("../images/Banner.png")}
-        resizeMode="contain"
-        style={styles.fullImage}
-      />
+      <StatusBar backgroundColor={ColorStyles.light.primaryBg} barStyle="dark-content" />
+      <View style={[styles.fullImage, GenericStyles.centerContent]}>
+        <LottieView source={require('../assets/lottie/cart2.json')} autoPlay loop style={{ height: 400 }} />
+      </View>
       <View style={styles.descTextParent}>
         <Text style={styles.welcomeText}>Welcome to CaStore !</Text>
         <Text style={styles.descriptionText}>
           With long experience in the audio industry, we create the best quality
           products
         </Text>
-        <TouchableOpacity>
-          <View style={styles.getStartedButton}>
-            <View></View>
-            <Text style={styles.getStartedText}>GET STARTED</Text>
-            <FontAwesome
-              name="long-arrow-right"
-              size={24}
-              color="black"
-              style={styles.rightIcon}
-            />
-          </View>
-        </TouchableOpacity>
+        <Button title="Get Started" onPress={() => navigation.goBack()} style={{ marginTop: 20,width: "90%", }} />
       </View>
     </View>
   );
@@ -45,14 +37,17 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: ColorStyles.light.primaryBg,
+    width: "100%",
+    height: "100%"
   },
   fullImage: {
-    height: 500,
-    width: Dimensions.get("window").width,
+    height: "60%",
+    width: "100%",
   },
   descTextParent: {
-    width: Dimensions.get("window").width,
+    width: "100%",
+    height: "40%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 50,
@@ -60,13 +55,13 @@ const styles = StyleSheet.create({
   welcomeText: {
     fontSize: 25,
     fontFamily: "DMSansBold",
-    color: "#000",
+    color: ColorStyles.light.black,
   },
   descriptionText: {
     fontSize: 15,
     marginTop: 15,
     textAlign: "center",
-    color: "#ACACAC",
+    color: ColorStyles.light.lightgray,
     fontFamily: "DMSansMedium",
   },
   getStartedButton: {
