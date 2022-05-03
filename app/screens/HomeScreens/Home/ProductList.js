@@ -1,9 +1,11 @@
 import { View, Text } from 'react-native'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Dimensions } from 'react-native-web'
 import ProductLists from '../../../components/ProductLists'
 import HeaderBar from '../../../components/HeaderBar'
 import { useNavigation } from '@react-navigation/native'
+import NoData from '../../../components/common/NoData'
+import PlaceHolder from '../../../components/common/PlaceHolder'
 
 export default function ProductList() {
     const navigation=useNavigation()
@@ -226,7 +228,8 @@ export default function ProductList() {
         },
       ];
 const [page,setPage]=useState(8)
-const [items,setItems]=useState(rawitems.slice(0,page))
+const [loading,setLoading]=useState(true)
+const [items,setItems]=useState([])
     const onEndReached = () => {
         let data = rawitems
         setPage(page + 5)
@@ -234,10 +237,36 @@ const [items,setItems]=useState(rawitems.slice(0,page))
         data = data.slice(0, page)
         setItems(data)
     }
+
+    useEffect(() => {
+        setLoading(true)
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("https://fakestoreapi.com/products", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                if (result) {
+                    setItems(result)
+                    setLoading(false)
+                }
+            })
+            .catch(error => {
+                setLoading(false)
+            });
+    }, [])
+
     return (
         <View style={{ flex: 1 }}>
-            <HeaderBar onPress={()=>navigation.goBack()}/>
-            <ProductLists items={items} onEndReached={onEndReached} />
+            <HeaderBar onPress={() => navigation.goBack()} />
+            {!loading &&  items.length <= 0 && <NoData />}
+            {!loading && items && items.length > 0 && <ProductLists
+                items={items}
+                // onEndReached={onEndReached} 
+                />}
+            {loading && <PlaceHolder />}
         </View>
     )
 }

@@ -12,7 +12,6 @@ import {
 
 import React,{memo} from "react";
 import { ColorStyles } from "../assets/styles/ColorStyles";
-import SkeletonPlaceholder from "react-native-skeleton-placeholder";
  function ProductLists(props) {
 
   const placeholderItems=["1","2","3","4","5","6"]
@@ -20,38 +19,6 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
     <View style={styles.container}>
       <StatusBar backgroundColor={"#fff"} barStyle="dark-content" />
       {/* <ScrollView> */}
-        {/* <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            width: "100%",
-          }}
-        >
-       {placeholderItems.map((item, index) => {
-         return(
-          <SkeletonPlaceholder>
-            <SkeletonPlaceholder width={Dimensions.get("window").width / 2} height={250} style={{justifyContent: 'center',alignItems: 'center',}}>
-            <SkeletonPlaceholder.Item width={(Dimensions.get("window").width / 2)-10} height={200} borderRadius={9} />
-              </SkeletonPlaceholder>
-            <SkeletonPlaceholder.Item width={Dimensions.get("window").width / 2} height={80}>
-              <SkeletonPlaceholder.Item flexDirection="row" alignItems="center">
-                <SkeletonPlaceholder.Item marginLeft={10} marginTop={10}>
-                  <SkeletonPlaceholder.Item width={120} height={20} borderRadius={4} />
-                  <SkeletonPlaceholder.Item
-                    marginTop={6}
-                    width={80}
-                    height={20}
-                    borderRadius={4}
-                  />
-                </SkeletonPlaceholder.Item>
-              </SkeletonPlaceholder.Item>
-            </SkeletonPlaceholder.Item>
-          </SkeletonPlaceholder>
-         )})}
-        </View> */}
-
-    
-
           <FlatList
             data={props.items}
             keyExtractor={(x, i) => i.toString()}
@@ -64,14 +31,14 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
                 <View style={styles.productImage}>
                   <Image
                     source={{
-                      uri: item.img,
+                      uri: item.image,
                     }}
                     resizeMode="cover"
                     style={styles.productImage}
                   />
                 </View>
-                <Text style={styles.descTextParent}>{item.name}</Text>
-                <Text style={styles.descriptionText}>{item.desc}</Text>
+                <Text style={styles.descTextParent}>{item.title.length>20?item.title.substring(0,19)+"..":item.title}</Text>
+                <Text style={styles.descriptionText}>{item.description.length>20?item.description.substring(0,20)+"..":item.description}</Text>
                 <View style={styles.priceRow}>
                   <Text style={styles.regularPrice}>{"\u20B9"}248</Text>
                   <Text style={styles.offerPrice}>
@@ -145,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   descTextParent: {
-    fontSize: 15,
+    fontSize: 13,
     marginTop: 5,
     marginLeft: 10,
     color: "#282C3F",
@@ -155,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     // marginTop:5,
     marginLeft: 10,
-    color: "#535766",
+    color: "#c5c5c5",
     fontFamily: "DMSansMedium",
   },
   priceRow: {
