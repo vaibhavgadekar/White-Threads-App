@@ -4,7 +4,7 @@ export const ColorStyles = {
         "primaryButtonText": "#ffffff",
         "primaryBg":"#f4ede4",
         "white":"#ffffff",
-        "black":"#4a154b",
+        "black":"#000000",
         "darkpink":"#4a154b",
         "lightgray":"#ACACAC"
     }

@@ -11,7 +11,7 @@ import {
 
 import React from "react";
 
-export default function HeaderBar() {
+export default function HeaderBar(props) {
   return (
     <View style={styles.headerParent}>
       <View style={styles.leftLogoView}>
@@ -20,6 +20,7 @@ export default function HeaderBar() {
           size={28}
           color="black"
           style={styles.leftIcon}
+          onPress={props.onPress}
         />
         <Text style={styles.headerTitle}>Mens Shoees</Text>
       </View>

@@ -26,16 +26,15 @@ export const GenericStyles = StyleSheet.create({
     },
     inputBackground: {
         width: "100%",
-        height: 103,
+        height: 53,
         backgroundColor: "#ebe1d3",
-        borderRadius: 18
+        borderRadius: 8
     },
     inputText: {
         color: ColorStyles.light.darkpink,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: "DMSansBold",
-        marginTop:8,
-        marginLeft:10
+
     },
     marginTop24: {
         marginTop: 24
