@@ -6,6 +6,7 @@ import HeaderBar from '../../../components/HeaderBar'
 import { useNavigation } from '@react-navigation/native'
 import NoData from '../../../components/common/NoData'
 import PlaceHolder from '../../../components/common/PlaceHolder'
+import ProductImages from '../../../components/ProductImages'
 
 export default function ProductList() {
     const navigation=useNavigation()
@@ -261,12 +262,13 @@ const [items,setItems]=useState([])
     return (
         <View style={{ flex: 1 }}>
             <HeaderBar onPress={() => navigation.goBack()} />
-            {!loading &&  items.length <= 0 && <NoData />}
+            {/* {!loading &&  items.length <= 0 && <NoData />}
             {!loading && items && items.length > 0 && <ProductLists
                 items={items}
                 // onEndReached={onEndReached} 
                 />}
-            {loading && <PlaceHolder />}
+            {loading && <PlaceHolder />} */}
+            <ProductImages/>
         </View>
     )
 }

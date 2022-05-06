@@ -14,6 +14,7 @@ import React from "react";
 export default function HeaderBar(props) {
   return (
     <View style={styles.headerParent}>
+      <StatusBar backgroundColor={"#fff"} barStyle="dark-content" />
       <View style={styles.leftLogoView}>
         <AntDesign
           name="arrowleft"

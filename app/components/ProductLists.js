@@ -20,7 +20,7 @@ import { ColorStyles } from "../assets/styles/ColorStyles";
       <StatusBar backgroundColor={"#fff"} barStyle="dark-content" />
       {/* <ScrollView> */}
           <FlatList
-            data={props.items}
+            data={props.items && props.items}
             keyExtractor={(x, i) => i.toString()}
             numColumns={2}
             onEndReachedThreshold={0.4}
