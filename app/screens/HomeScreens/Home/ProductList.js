@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text,SafeAreaView ,StatusBar} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { Dimensions } from 'react-native-web'
 import ProductLists from '../../../components/ProductLists'
@@ -250,25 +250,33 @@ const [items,setItems]=useState([])
             .then(response => response.json())
             .then(result => {
                 if (result) {
+                  console.log(result);
                     setItems(result)
                     setLoading(false)
                 }
             })
             .catch(error => {
+              console.log(error);
                 setLoading(false)
             });
     }, [])
 
     return (
-        <View style={{ flex: 1 }}>
+        // <View >
+          <SafeAreaView style={{ flex: 1 }}>
+            <>
+      <StatusBar backgroundColor={"#ffffff"} barStyle="dark-content" />
+
             <HeaderBar onPress={() => navigation.goBack()} />
-            {/* {!loading &&  items.length <= 0 && <NoData />}
+            {!loading &&  items.length <= 0 && <NoData />}
             {!loading && items && items.length > 0 && <ProductLists
                 items={items}
                 // onEndReached={onEndReached} 
                 />}
-            {loading && <PlaceHolder />} */}
-            <ProductImages/>
-        </View>
+            {loading && <PlaceHolder />}
+            {/* <ProductImages/> */}
+            </>
+            </SafeAreaView>
+        // </View>
     )
 }

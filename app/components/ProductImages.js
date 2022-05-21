@@ -77,18 +77,22 @@ export default function ProductImages() {
                   })}
               </ScrollView>
           </View>
-          <View>
-              <ScrollView horizontal>
-                  {data.map((item, index) => {
-                      return (
-                          <View style={{ height: 40, width: 40, borderColor: ColorStyles.light.lightgray, borderWidth: 1, marginLeft: 8, justifyContent: 'center', alignItems: 'center',backgroundColor:index==3?getRandomColor():"white" }}>
-                              <Text style={{ color: index == 3 ? "black" : ColorStyles.light.lightgray }}>M</Text>
-                          </View>
-                      )
-                  })}
-              </ScrollView>
-              <ImageGallery style={{backgroundColor: 'white',}} close={closeGallery} isOpen={isOpen} images={data} renderHeaderComponent={renderHeaderComponent} thumbSize={100}/>
-          </View>
+        <ImageGallery style={{ backgroundColor: 'white', }} close={closeGallery} isOpen={isOpen} images={data} renderHeaderComponent={renderHeaderComponent} thumbSize={100} />
+
+      {/* <View style={{marginTop:15}}>
+        <ScrollView horizontal>
+          {data.map((item, index) => {
+            return (
+              <View style={{ height: 40, width: 40, borderColor: ColorStyles.light.lightgray, borderWidth: 1, marginLeft: 8, justifyContent: 'center', alignItems: 'center', backgroundColor: index == 3 ? "black" : "#F9FAFB", borderRadius: 4 }}>
+                <Text style={{
+                  color: index == 3 ? "white" : ColorStyles.light.lightgray, fontSize: 11,
+                  fontFamily: "DMSansMedium",
+                }}>XL</Text>
+              </View>
+            )
+          })}
+        </ScrollView>
+      </View> */}
       </View>
   )
 }

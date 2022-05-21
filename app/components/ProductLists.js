@@ -5,52 +5,64 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  ImageBackground,
   Text,
   FlatList,
   View,
 } from "react-native";
 
-import React,{memo} from "react";
+import React, { memo } from "react";
 import { ColorStyles } from "../assets/styles/ColorStyles";
- function ProductLists(props) {
+import AppStatusBar from "./common/AppStatusBar";
+function ProductLists(props) {
 
-  const placeholderItems=["1","2","3","4","5","6"]
+  const placeholderItems = ["1", "2", "3", "4", "5", "6"]
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={"#fff"} barStyle="dark-content" />
+      <AppStatusBar />
       {/* <ScrollView> */}
-          <FlatList
-            data={props.items && props.items}
-            keyExtractor={(x, i) => i.toString()}
-            numColumns={2}
-            onEndReachedThreshold={0.4}
-            onEndReached={props.onEndReached}
-            initialNumToRender={5}
-            renderItem={({ item, index }) =>
-              <View style={styles.Productcard}>
-                <View style={styles.productImage}>
-                  <Image
-                    source={{
-                      uri: item.image,
-                    }}
-                    resizeMode="cover"
-                    style={styles.productImage}
-                  />
-                </View>
-                <Text style={styles.descTextParent}>{item.title.length>20?item.title.substring(0,19)+"..":item.title}</Text>
-                <Text style={styles.descriptionText}>{item.description.length>20?item.description.substring(0,20)+"..":item.description}</Text>
-                <View style={styles.priceRow}>
-                  <Text style={styles.regularPrice}>{"\u20B9"}248</Text>
-                  <Text style={styles.offerPrice}>
-                    {"\u20B9"}
-                    {item.price}
-                  </Text>
-                  <Text style={styles.percentText}>20% OFF</Text>
-                </View>
+      <FlatList
+        data={props.items && props.items}
+        keyExtractor={(x, i) => i.toString()}
+        numColumns={2}
+        onEndReachedThreshold={0.4}
+        onEndReached={props.onEndReached}
+        initialNumToRender={5}
+        style={{ marginBottom: 60 }}
+        renderItem={({ item, index }) =>
+          <View style={styles.Productcard}>
+            <View style={styles.productImage}>
+              <View>
+                <ImageBackground
+                  source={{
+                    uri: item.image,
+                  }}
+                  resizeMode="contain"
+                  style={[styles.productImage, {
+                    height: 230,
+                    width: (Dimensions.get("window").width - 20) / 2,
+                  }]}
+                >
+                  <View style={{ height: 25, width: 70, backgroundColor: '#10B989', marginTop: 5, marginLeft: 5, borderRadius: 2, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: 'white', fontFamily: "DMSansMedium", fontSize: 11 }}>Trending</Text>
+                  </View>
+                </ImageBackground>
               </View>
-            }
-          />
-           {/* {props.items.map((item, index) => {
+            </View>
+            <Text style={styles.descTextParent}>{item.title.length > 20 ? item.title.substring(0, 19) + ".." : item.title}</Text>
+            <Text style={styles.descriptionText}>{item.description.length > 20 ? item.description.substring(0, 20) + ".." : item.description}</Text>
+            <View style={styles.priceRow}>
+              <Text style={styles.regularPrice}>{"\u20B9"}248</Text>
+              <Text style={styles.offerPrice}>
+                {"\u20B9"}
+                {item.price}
+              </Text>
+              <Text style={styles.percentText}>20% OFF</Text>
+            </View>
+          </View>
+        }
+      />
+      {/* {props.items.map((item, index) => {
             return (
               <View style={styles.Productcard}>
                 <View style={styles.productImage}>
@@ -76,7 +88,7 @@ import { ColorStyles } from "../assets/styles/ColorStyles";
             );
           })} */}
       {/* </ScrollView> */}
-      {/* <View style={styles.BottomView}>
+      <View style={styles.BottomView}>
         <View style={styles.SortByView}>
           <View style={styles.SortByViewChild}>
             <Ionicons name="swap-vertical-outline" size={24} color="#fff" />
@@ -89,7 +101,7 @@ import { ColorStyles } from "../assets/styles/ColorStyles";
             <Text style={styles.SortText}>FILTER BY</Text>
           </View>
         </View>
-      </View> */}
+      </View>
     </View>
   );
 }
@@ -110,6 +122,8 @@ const styles = StyleSheet.create({
     height: 250,
     width: Dimensions.get("window").width / 2,
     backgroundColor: "white",
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   descTextParent: {
     fontSize: 13,
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
   },
   percentText: {
     marginLeft: 5,
-    color: "#00A300",
+    color: "#EC6D2B",
     fontSize: 12,
     marginTop: 5,
     fontFamily: "DMSansMedium",

@@ -4,6 +4,8 @@ import LoginScreen from '../screens/Authentications/LoginScreen'
 import ProductLists from '../components/ProductLists'
 import WelcomeScreen from '../screens/WelcomeScreen'
 import ProductList from '../screens/HomeScreens/Home/ProductList'
+import ProductImages from '../components/ProductImages'
+import ProductDetails from '../screens/HomeScreens/Home/ProductDetails'
 
 export default function AuthNavigator() {
     const AuthStack = createNativeStackNavigator()
@@ -11,20 +13,22 @@ export default function AuthNavigator() {
         <AuthStack.Navigator screenOptions={{
             animation:'slide_from_right'
         }}>
-             <AuthStack.Screen
+               <AuthStack.Screen
                 name="ProductList"
-                component={ProductList}
+                component={ProductDetails}
                 options={{
                     headerShown: false,
                 }}
             />
-            <AuthStack.Screen
+             <AuthStack.Screen
                 name="LoginScreen"
                 component={LoginScreen}
                 options={{
                     headerShown: false,
                 }}
             />
+          
+           
             <AuthStack.Screen
                 name="WelcomeScreen"
                 component={WelcomeScreen}
